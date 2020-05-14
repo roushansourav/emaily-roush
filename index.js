@@ -1,3 +1,7 @@
+/**
+ * author:Roushan Sourav
+ * alias:VenomWolf
+ */
 const express =require('express');
 const passport =require('passport');
 const GoogleStrategy=require('passport-google-oauth20').Strategy;
@@ -22,6 +26,10 @@ app.get('/auth/google',
 passport.authenticate('google',{
 	scope:['profile','email']
 }));
+
+app.get('/auth/google/callback',
+passport.authenticate('google')
+);
 
 
 
