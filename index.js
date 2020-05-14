@@ -15,6 +15,9 @@ passport.use(new GoogleStrategy(
 	}
 ));
 
+app.get('/',function(req,res){
+	res.send('bye buddy')
+})
 app.get('/auth/google',
 passport.authenticate('google',{
 	scope:['profile','email']
