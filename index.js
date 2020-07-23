@@ -6,18 +6,20 @@ const express =require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const keys = require('./configs/keys');
+const {MONGO_URI} =require('./configs/db');
 require('dotenv').config();
 require('./models/user');
 require('./services/passport');
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI || MONGO_URI);
 const app=express();
-const PORT=process.env.PORT || 5000;
+const PORT=process.env.PORT || keys.PORT;
 
 app.use(
 	cookieSession({
 		maxAge:30*24*60*60*1000,
-		keys:[process.env.cookie_KEYS]
+		keys:[process.env.cookie_KEYS || keys.COOKIES_KEYS]
 	})
 );
 app.use(passport.initialize());

@@ -7,7 +7,7 @@ passport.authenticate('google',{
 }));
 
 app.get('/auth/google/callback',
-passport.authenticate('google')
+passport.authenticate('google',{session:false})
 );
 app.get('/api/logout',(req,res)=>{
 	req.logout();
