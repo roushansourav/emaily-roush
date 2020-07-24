@@ -7,13 +7,14 @@ passport.authenticate('google',{
 }));
 
 app.get('/auth/google/callback',
-passport.authenticate('google',{session:false})
+passport.authenticate('google')
 );
 app.get('/api/logout',(req,res)=>{
 	req.logout();
 	res.send(req.user);
 });
 app.get('/api/current_user',(req,res)=>{
+	console.log(req.user)
 	res.send(req.user);
 });
 
